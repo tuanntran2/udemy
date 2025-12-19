@@ -1,0 +1,13 @@
+langchain
+langchain-openai
+InstructorEmbedding
+sentence-transformers
+langchain-huggingface
+langchain-chroma
+langchain_community
+langchain-text-splitters
+ddgs
+langgraph
+dotenv
+Pillow
+beautifulsoup4
