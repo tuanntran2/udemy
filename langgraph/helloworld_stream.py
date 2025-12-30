@@ -10,7 +10,7 @@ class HelloWorldState(TypedDict):
 
 def hello(state: HelloWorldState, writer: StreamWriter) -> HelloWorldState:
     # print(f"Hello Node: {state.get('message')}")
-    writer(f"Hello {state.get('message')}\n")
+    writer(f"Hello node stream:  messsage: {state.get('message')}\n")
     return {"message": f"Hello {state.get('message')}"}
 
 
@@ -22,7 +22,9 @@ def bye(state: HelloWorldState) -> HelloWorldState:
 graph = StateGraph(HelloWorldState)
 graph.add_node("hello", hello)
 graph.add_node("bye", bye)
-graph.set_entry_point("hello")
+# the following statement is not needed
+# as we already have START -> hello edge
+# graph.set_entry_point("hello")
 
 graph.add_edge(START, "hello")
 graph.add_edge("hello", "bye")

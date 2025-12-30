@@ -1,8 +1,8 @@
-from typing import Annotated
+# from typing import Annotated
 # from langchain_core.messages import AnyMessage
-from operator import add
+# from operator import add
 from langgraph.graph import END, START, StateGraph, MessagesState
-from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain_core.messages import AIMessage, HumanMessage
 from langgraph_utils import display
 
 
@@ -56,6 +56,5 @@ messages = chatbot.invoke({"messages": [HumanMessage(content=test_inputs)]})
 
 for message in messages["messages"]:
     print(f"🤖 **Bot:** {message.content}")
-
 
 # print("Final Discount: ", messages['discount'], '%')

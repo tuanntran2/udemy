@@ -155,9 +155,7 @@ def test_rag_with_default():
     rag.load(
         sources=[
             "https://www.espn.com/nba/scoreboard",
-        ],
-        chunk_size=500,
-        chunk_overlap=50,
+        ]
     )
 
     query = "which teams won last night NBA games?"

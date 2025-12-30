@@ -1,6 +1,7 @@
+import time
 from typing import TypedDict
 from langgraph.graph import START, END, StateGraph
-from langgraph_utils import display
+# from langgraph_utils import display
 
 
 class HelloWorldState(TypedDict):
@@ -9,13 +10,19 @@ class HelloWorldState(TypedDict):
 
 
 def hello(state: HelloWorldState) -> HelloWorldState:
-    print(f"Hello Node: {state.get('message')}")
-    return {"message": f"Hello {state.get('message')}"}
+    print(f"Entering Hello Node: {state.get('message')}")
+    time.sleep(2)
+    updated_state = {"message": f"Hello {state.get('message')}"}
+    print(f"Exiting Hello Node: {updated_state.get('message')}")
+    return updated_state
 
 
 def bye(state: HelloWorldState) -> HelloWorldState:
-    print(f"Goodbye Node: {state.get('message')}")
-    return {"message": f"Goodbye {state.get('message')}"}
+    print(f"Entering Goodbye Node: {state.get('message')}")
+    time.sleep(1)
+    updated_state = {"message": f"Goodbye {state.get('message')}"}
+    print(f"Exiting Goodbye Node: {updated_state.get('message')}")
+    return updated_state
 
 
 graph = StateGraph(HelloWorldState)
@@ -28,6 +35,6 @@ graph.add_edge("hello_node", "bye_node")
 graph.add_edge("bye_node", END)
 
 runnable = graph.compile()
-display(runnable)
+# display(runnable)
 output = runnable.invoke({"id": 123, "message": "Tuan"})
 print(output)

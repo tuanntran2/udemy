@@ -9,6 +9,7 @@ from langchain_core.messages import HumanMessage
 from langgraph.checkpoint.postgres import PostgresSaver
 
 
+
 DB_CONNECTION_STRING = "postgresql://localhost:5432/langgraph_memory"
 
 

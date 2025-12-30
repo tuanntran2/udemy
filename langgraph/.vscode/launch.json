@@ -11,6 +11,18 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Chainlit",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "chainlit",
+            "args": [
+                "run",
+                "${file}",
+                "--watch"
+            ],
+            "justMyCode": false
         }
     ]
 }

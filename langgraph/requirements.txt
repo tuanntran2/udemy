@@ -6,8 +6,12 @@ langchain-huggingface
 langchain-chroma
 langchain_community
 langchain-text-splitters
+langgraph-checkpoint-postgres
 ddgs
 langgraph
 dotenv
 Pillow
 beautifulsoup4
+psycopg[binary]
+ollama
+chainlit

@@ -2,7 +2,7 @@ import asyncio
 from operator import add
 from typing import Annotated, TypedDict
 from langgraph.graph import START, END, StateGraph
-from langgraph_utils import display
+# from langgraph_utils import display
 
 
 class HelloWorldState(TypedDict):
@@ -11,15 +11,19 @@ class HelloWorldState(TypedDict):
 
 
 async def hello(state: HelloWorldState) -> HelloWorldState:
-    print(f"Hello Node: {state.get('message')}")
+    print(f"Entering Hello Node: {state.get('message')}")
     await asyncio.sleep(1)
-    return {"message": f"Hello {state.get('message')}"}
+    updated_state = {"message": f"Hello {state.get('message')}"}
+    print(f"Exiting Hello Node: {updated_state.get('message')}")
+    return updated_state
 
 
 async def bye(state: HelloWorldState) -> HelloWorldState:
-    print(f"Goodbye Node: {state.get('message')}")
-    await asyncio.sleep(1)
-    return {"message": f"Goodbye {state.get('message')}"}
+    print(f"Entering Goodbye Node: {state.get('message')}")
+    await asyncio.sleep(2)
+    updated_state = {"message": f"Goodbye {state.get('message')}"}
+    print(f"Exiting Goodbye Node: {updated_state.get('message')}")
+    return updated_state
 
 
 graph = StateGraph(HelloWorldState)
@@ -35,9 +39,9 @@ graph.add_edge("bye_node", END)
 
 async def main():
     runnable = graph.compile()
-    display(runnable)
+    # display(runnable)
 
-    output = await runnable.ainvoke({"message": "Tuan"})
+    output = await runnable.ainvoke({"id": 123, "message": "Tuan"})
     print(output)
 
 
